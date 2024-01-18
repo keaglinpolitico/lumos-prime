@@ -1,7 +1,4 @@
-name = "your-app-name" # Replace with your worker's name
-type = "webpack" # Nuxt 3 projects typically use webpack
-account_id = "" # Your Cloudflare account ID
-# workers_dev = true # Set to false if deploying to a custom domain
-route = "" # The route for your worker, leave blank if using workers.dev
-zone_id = "" # The zone ID for your custom domain, leave blank if using workers.dev
+name = "lumos-prime" # Replace with your worker's name
+main = "./.output/server/index.mjs"
+workers_dev = true # Set to false if deploying to a custom domain
 compatibility_date = "2024-01-18" # Today's date, update as necessary
