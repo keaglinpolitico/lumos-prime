@@ -4,7 +4,6 @@ name: Deploy to Cloudflare Workers with Bun
 on:
   push:
     branches: ['main', 'develop']
-  workflow_dispatch:
 
 jobs:
   build:
