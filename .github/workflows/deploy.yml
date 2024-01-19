@@ -23,7 +23,7 @@ jobs:
       uses: oven-sh/setup-bun@v1.1.1
 
     - name: Cache node_modules
-        uses: actions/cache@v4
+        uses: actions/cache@v3
         with:
           path: node_modules
           key: ubuntu-latest-node-v20-deps-${{ hashFiles(format('{0}{1}', github.workspace, '/bun.lockb')) }}
