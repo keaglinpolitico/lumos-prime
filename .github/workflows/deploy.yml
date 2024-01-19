@@ -56,4 +56,4 @@ jobs:
         apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         packageManager: bun
-        # command: deploy --name lumos-prime-${{ github.ref_name }}
+        command: deploy --name lumos-prime-${{ github.ref_name }}
