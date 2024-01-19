@@ -13,16 +13,27 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: "20"
-        cache: ${{ steps.detect-package-manager.outputs.manager }}
 
     - name: Setup Bun
       uses: oven-sh/setup-bun@v1.1.1
 
-    - name: Cache node_modules
-        uses: actions/cache@v3
-        with:
-          path: node_modules
-          key: ubuntu-latest-node-v20-deps-${{ hashFiles(format('{0}{1}', github.workspace, '/bun.lockb')) }}
+    - name: Restore cached deps
+      id: cache-restore
+      uses: actions/cache/restore@v4
+      with:
+        path: |
+          node_modules
+          .nuxt
+        key: ${{ runner.os }}-${{ hashFiles('**/bun.lockb') }}
+
+    - name: Cache save deps
+      id: cache-primes-save
+      uses: actions/cache/save@v4
+      with:
+        path: |
+          node_modules
+          .nuxt
+        key: ${{ steps.cache-primes-restore.outputs.cache-primary-key }}
 
     - name: Install Dependencies
       if: steps.cache.outputs.cache-hit != 'true'
@@ -44,4 +55,4 @@ jobs:
       with:
         apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-        command: publish --name lumos-prime-${{ github.ref_name }}
+        # command: deploy --name lumos-prime-${{ github.ref_name }}
