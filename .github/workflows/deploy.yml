@@ -1,9 +1,6 @@
 name: Deploy to Cloudflare Workers with Bun
 
-# Trigger the workflow on push to main branch or manually
-on:
-  push:
-    branches: ['main', 'develop']
+on: push
 
 jobs:
   build:
