@@ -3,7 +3,7 @@ name: Deploy to Cloudflare Workers with Bun
 on: push
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
@@ -44,16 +44,6 @@ jobs:
       env:
           NITRO_PRESET: cloudflare
           NUXT_SSR: 'true'
-
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-    - name: Checkout main
-      uses: actions/checkout@main
-
-    - name: Setup Bun
-      uses: oven-sh/setup-bun@v1.1.1
 
     - name: Deploy to Cloudflare Workers
       uses: cloudflare/wrangler-action@v3
