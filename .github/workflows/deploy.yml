@@ -16,6 +16,8 @@ jobs:
 
     - name: Setup Bun
       uses: oven-sh/setup-bun@v1.1.1
+
+    - name: Bun Postinstall
       run: 'exec /bin/zsh'
 
     - name: Restore cached deps
