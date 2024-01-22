@@ -49,11 +49,14 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
+    - name: Setup Bun
+      uses: oven-sh/setup-bun@v1.1.1
+
     - uses: actions/checkout@main
     - name: Deploy to Cloudflare Workers
       uses: cloudflare/wrangler-action@v3
       with:
         apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-        packageManager: bunx
+        packageManager: bun
         command: deploy --name lumos-prime-${{ github.ref_name }}
